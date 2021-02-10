@@ -12,11 +12,13 @@ def calc_confusion_matrix(pred, gt, cmat):
     gt_mask = extract_masks(gt, cl, n_cl)
     
     for ig in range(n_cl):
+        gm = gt_mask[ig, :, :]
+        if np.sum(gm) == 0:
+            continue
+
         for ip in range(n_cl):
             pm = pred_mask[ip, :, :]
-            gm = gt_mask[ig, :, :]
-
-            if (np.sum(pm) == 0) or (np.sum(gm) == 0):
+            if np.sum(pm) == 0:
                 continue
 
             cmat[ig, ip] += np.sum(np.logical_and(pm, gm))
@@ -50,7 +52,8 @@ def calc_mean_precision(cmat, ignore=None):
     for i in range(raw):
         n_iou = _cmat[i, i]
         n_pred = np.sum(_cmat[:, i])
-        class_precision[i] = n_iou / n_pred
+        if n_pred != 0:
+            class_precision[i] = n_iou / n_pred
 
     mean_precision = np.average(class_precision[~np.isnan(class_precision)])
     return mean_precision, class_precision
@@ -67,7 +70,8 @@ def calc_mean_recall(cmat, ignore=None):
     for i in range(raw):
         n_iou = _cmat[i, i]
         n_gt = np.sum(_cmat[i])
-        class_recall[i] = n_iou / n_gt
+        if n_gt != 0:
+            class_recall[i] = n_iou / n_gt
 
     mean_recall = np.average(class_recall[~np.isnan(class_recall)])
     return mean_recall, class_recall
