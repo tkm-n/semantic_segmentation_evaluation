@@ -1,4 +1,4 @@
-# Semantic Segmentation Metrics
+# Semantic Segmentation Evaluation
 
 This is an evaluation metrics package for semantic segmentation, including confusion matrix calculation, pixel accuracy, mean IoU, etc. 
 
