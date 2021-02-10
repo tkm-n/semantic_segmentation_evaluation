@@ -1,6 +1,6 @@
 # Semantic Segmentation Metrics
 
-This is a evaluation metrics package for semantic segmentation, including confusion matrix calculation, pixel accuracy, mean IoU, etc. 
+This is an evaluation metrics package for semantic segmentation, including confusion matrix calculation, pixel accuracy, mean IoU, etc. 
 
 ## Usage 
 ### for single image
