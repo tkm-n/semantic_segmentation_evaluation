@@ -31,5 +31,5 @@ ignore_labels = [0]
 
 # pred and gt should be the same size and 1ch image
 for i in range(n_dataset):
-    confusion_matrix += metrics.calc_confusion_matrix(pred[i], gt[i], confusion_matrix)
+    confusion_matrix = metrics.calc_confusion_matrix(pred[i], gt[i], confusion_matrix)
 ```
